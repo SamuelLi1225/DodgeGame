@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+ 
+public class LongMovement : MonoBehaviour
+{
+ 
+    private Vector2 startPosition;
+ 
+    private Vector2 newPosition;
+ 
+    [SerializeField] private float speed = 3;
+ 
+    [SerializeField] private float maxDistance = 3;
+ 
+   
+    void Start()
+    {
+        startPosition = transform.position;
+        newPosition = transform.position;
+    }
+ 
+   
+    void Update()
+    {
+        newPosition.y = startPosition.y + (maxDistance * Mathf.Cos(Time.time * speed));
+        transform.position = newPosition;
+    }
+}
+ 
