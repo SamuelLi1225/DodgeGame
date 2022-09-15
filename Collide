@@ -1,23 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Collide : MonoBehaviour
 {   
 
     private Vector2 startPosition;
+    [SerializeField] GameObject loseText;
 
     void Start(){
         startPosition = transform.position;
     }
     // Start is called before the first frame update
-    //[SerializeField] int lives = 3;
+    [SerializeField] int lives = 3;
+    [SerializeField] GameObject[] livesArray;
     private void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.name.Equals("Obstacle")){
+        if(collision.collider.CompareTag("Obstacle")){
             transform.position = startPosition;
-
-            //transform.Translate(-9.2f,-2.49f,0);
-           
+            lives-- ;
+            Destroy(livesArray[lives]);
+            
+            if (lives <= 0) {
+                transform.position = startPosition;
+                Time.timeScale = 0;
+                loseText.SetActive(true);
+                }
+                          
         }
 
 
