@@ -27,4 +27,3 @@ public class LongMovement : MonoBehaviour
         transform.position = newPosition;
     }
 }
- 
