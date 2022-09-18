@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+ 
+public class RectangleObstacle : MonoBehaviour
+{
+    
+ 
+    [SerializeField] private Vector3  v1, v2, v3;
+    private Vector3 startpos;
+    [SerializeField] private float speed = 7;
+    [SerializeField] private float direction = 0;
+    
+    void Start()
+    {
+        startpos = transform.position;
+    }
+ 
+    
+    void Update()
+    {
+        
+        if(transform.position == startpos||direction == 0){
+        transform.position = Vector3.MoveTowards(transform.position, v1, speed* Time.deltaTime);
+        direction =0;
+        }
+        if(transform.position == v1||direction == 1){
+        transform.position = Vector3.MoveTowards(transform.position, v2, speed* Time.deltaTime);
+        direction =1;
+        }
+        if(transform.position == v2||direction == 2){
+        transform.position = Vector3.MoveTowards(transform.position, v3, speed* Time.deltaTime);
+        direction =2;
+        }
+        if(transform.position == v3||direction == 3){
+        transform.position = Vector3.MoveTowards(transform.position, startpos, speed* Time.deltaTime);
+        direction =3;
+        }
+    }    
+}
